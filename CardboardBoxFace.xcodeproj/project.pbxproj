@@ -481,6 +481,7 @@
 			baseConfigurationReference = 4BB5B558053FC58D54AECFFF /* Pods-CardboardBoxFace.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CardboardBoxFace/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ericmentele.CardboardBoxFace;
@@ -495,6 +496,7 @@
 			baseConfigurationReference = EE61A40B36D2348E5F5705FB /* Pods-CardboardBoxFace.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CardboardBoxFace/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ericmentele.CardboardBoxFace;

@@ -10,11 +10,10 @@ import UIKit
 import QuartzCore
 import SceneKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, GCSCardboardViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // create a new scene
         let scene = SCNScene(named: "art.scnassets/ship.scn")!
         
@@ -41,13 +40,18 @@ class GameViewController: UIViewController {
         scene.rootNode.addChildNode(ambientLightNode)
         
         // retrieve the ship node
-        let ship = scene.rootNode.childNodeWithName("ship", recursively: true)!
+        _ = scene.rootNode.childNodeWithName("ship", recursively: true)!
         
         // animate the 3d object
-        ship.runAction(SCNAction.repeatActionForever(SCNAction.rotateByX(0, y: 2, z: 0, duration: 1)))
+        //ship.runAction(SCNAction.repeatActionForever(SCNAction.rotateByX(0, y: 2, z: 0, duration: 1)))
         
         // retrieve the SCNView
         let scnView = self.view as! SCNView
+        let cardboardView = GCSCardboardView()
+        cardboardView.delegate = self
+        cardboardView.vrModeEnabled = true
+        scnView.addSubview(cardboardView)
+        //scnView.addSubview(cardboardView)
         
         // set the scene to the view
         scnView.scene = scene
@@ -64,6 +68,26 @@ class GameViewController: UIViewController {
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
+    }
+    
+    func cardboardView(cardboardView: GCSCardboardView!, didFireEvent event: GCSUserEvent) {
+        print("didFireEvent")
+    }
+    
+    func cardboardView(cardboardView: GCSCardboardView!, willStartDrawing headTransform: GCSHeadTransform!) {
+        print("willStartDrawing")
+    }
+    
+    func cardboardView(cardboardView: GCSCardboardView!, prepareDrawFrame headTransform: GCSHeadTransform!) {
+        print("prepareDrawFrame")
+    }
+    
+    func cardboardView(cardboardView: GCSCardboardView!, drawEye eye: GCSEye, withHeadTransform headTransform: GCSHeadTransform!) {
+        print("withHeadTransForm")
+    }
+    
+    func cardboardView(cardboardView: GCSCardboardView!, shouldPauseDrawing pause: Bool) {
+        print("shouldPauseDrawing")
     }
     
     func handleTap(gestureRecognize: UIGestureRecognizer) {
