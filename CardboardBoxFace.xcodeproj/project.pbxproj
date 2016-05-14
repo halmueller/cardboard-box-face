@@ -52,6 +52,7 @@
 		8CC051E11CE4404C009B5BF0 /* CardboardBoxFaceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardboardBoxFaceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CC051E51CE4404C009B5BF0 /* CardboardBoxFaceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardboardBoxFaceUITests.swift; sourceTree = "<group>"; };
 		8CC051E71CE4404C009B5BF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CC051F31CE6CA11009B5BF0 /* CBF-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBF-Bridging-Header.h"; sourceTree = "<group>"; };
 		EE61A40B36D2348E5F5705FB /* Pods-CardboardBoxFace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardboardBoxFace.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardboardBoxFace/Pods-CardboardBoxFace.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +122,7 @@
 				8CC051CC1CE4404C009B5BF0 /* Assets.xcassets */,
 				8CC051CE1CE4404C009B5BF0 /* LaunchScreen.storyboard */,
 				8CC051D11CE4404C009B5BF0 /* Info.plist */,
+				8CC051F31CE6CA11009B5BF0 /* CBF-Bridging-Header.h */,
 			);
 			path = CardboardBoxFace;
 			sourceTree = "<group>";
@@ -483,6 +485,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ericmentele.CardboardBoxFace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CardboardBoxFace/CBF-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "Pods/**";
 			};
 			name = Debug;
 		};
@@ -495,6 +499,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ericmentele.CardboardBoxFace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CardboardBoxFace/CBF-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "Pods/**";
 			};
 			name = Release;
 		};
