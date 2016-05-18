@@ -9,6 +9,6 @@
 #ifndef CBF_Bridging_Header_h
 #define CBF_Bridging_Header_h
 
-#import "GCSCardboardView.h"
+
 
 #endif /* CBF_Bridging_Header_h */

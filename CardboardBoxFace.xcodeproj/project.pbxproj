@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		183A4664015DD219DDBB389F /* libPods-CardboardBoxFace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86EAAFE99E586152FC349219 /* libPods-CardboardBoxFace.a */; };
 		8CC051C41CE4404C009B5BF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC051C31CE4404C009B5BF0 /* AppDelegate.swift */; };
 		8CC051C61CE4404C009B5BF0 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC051C51CE4404C009B5BF0 /* art.scnassets */; };
 		8CC051C81CE4404C009B5BF0 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC051C71CE4404C009B5BF0 /* GameViewController.swift */; };
@@ -36,8 +35,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4BB5B558053FC58D54AECFFF /* Pods-CardboardBoxFace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardboardBoxFace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardboardBoxFace/Pods-CardboardBoxFace.debug.xcconfig"; sourceTree = "<group>"; };
-		86EAAFE99E586152FC349219 /* libPods-CardboardBoxFace.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CardboardBoxFace.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CC051C01CE4404C009B5BF0 /* CardboardBoxFace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardboardBoxFace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CC051C31CE4404C009B5BF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CC051C51CE4404C009B5BF0 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -53,7 +50,6 @@
 		8CC051E51CE4404C009B5BF0 /* CardboardBoxFaceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardboardBoxFaceUITests.swift; sourceTree = "<group>"; };
 		8CC051E71CE4404C009B5BF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CC051F31CE6CA11009B5BF0 /* CBF-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBF-Bridging-Header.h"; sourceTree = "<group>"; };
-		EE61A40B36D2348E5F5705FB /* Pods-CardboardBoxFace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardboardBoxFace.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardboardBoxFace/Pods-CardboardBoxFace.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +57,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				183A4664015DD219DDBB389F /* libPods-CardboardBoxFace.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,14 +77,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1AEC88D2910974FFBCB29D58 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				86EAAFE99E586152FC349219 /* libPods-CardboardBoxFace.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		8CC051B71CE4404C009B5BF0 = {
 			isa = PBXGroup;
 			children = (
@@ -97,8 +84,6 @@
 				8CC051D91CE4404C009B5BF0 /* CardboardBoxFaceTests */,
 				8CC051E41CE4404C009B5BF0 /* CardboardBoxFaceUITests */,
 				8CC051C11CE4404C009B5BF0 /* Products */,
-				92A8D0F358265717BB5E2EB4 /* Pods */,
-				1AEC88D2910974FFBCB29D58 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -145,15 +130,6 @@
 			path = CardboardBoxFaceUITests;
 			sourceTree = "<group>";
 		};
-		92A8D0F358265717BB5E2EB4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				4BB5B558053FC58D54AECFFF /* Pods-CardboardBoxFace.debug.xcconfig */,
-				EE61A40B36D2348E5F5705FB /* Pods-CardboardBoxFace.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -161,12 +137,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8CC051EA1CE4404C009B5BF0 /* Build configuration list for PBXNativeTarget "CardboardBoxFace" */;
 			buildPhases = (
-				174D39D67BF0E6AA75267741 /* 📦 Check Pods Manifest.lock */,
 				8CC051BC1CE4404C009B5BF0 /* Sources */,
 				8CC051BD1CE4404C009B5BF0 /* Frameworks */,
 				8CC051BE1CE4404C009B5BF0 /* Resources */,
-				5E6A12BD15AB0B61942D9C39 /* 📦 Embed Pods Frameworks */,
-				177752650BA98ED331DD09D7 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -283,54 +256,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		174D39D67BF0E6AA75267741 /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		177752650BA98ED331DD09D7 /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CardboardBoxFace/Pods-CardboardBoxFace-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5E6A12BD15AB0B61942D9C39 /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CardboardBoxFace/Pods-CardboardBoxFace-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8CC051BC1CE4404C009B5BF0 /* Sources */ = {
@@ -478,7 +403,6 @@
 		};
 		8CC051EB1CE4404C009B5BF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4BB5B558053FC58D54AECFFF /* Pods-CardboardBoxFace.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ENABLE_BITCODE = NO;
@@ -493,7 +417,6 @@
 		};
 		8CC051EC1CE4404C009B5BF0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE61A40B36D2348E5F5705FB /* Pods-CardboardBoxFace.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ENABLE_BITCODE = NO;

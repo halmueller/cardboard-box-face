@@ -10,7 +10,7 @@ import UIKit
 import QuartzCore
 import SceneKit
 
-class GameViewController: UIViewController, GCSCardboardViewDelegate {
+class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +47,6 @@ class GameViewController: UIViewController, GCSCardboardViewDelegate {
         
         // retrieve the SCNView
         let scnView = self.view as! SCNView
-        let cardboardView = GCSCardboardView()
-        cardboardView.delegate = self
-        cardboardView.vrModeEnabled = true
-        scnView.addSubview(cardboardView)
-        //scnView.addSubview(cardboardView)
         
         // set the scene to the view
         scnView.scene = scene
@@ -68,26 +63,6 @@ class GameViewController: UIViewController, GCSCardboardViewDelegate {
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
-    }
-    
-    func cardboardView(cardboardView: GCSCardboardView!, didFireEvent event: GCSUserEvent) {
-        print("didFireEvent")
-    }
-    
-    func cardboardView(cardboardView: GCSCardboardView!, willStartDrawing headTransform: GCSHeadTransform!) {
-        print("willStartDrawing")
-    }
-    
-    func cardboardView(cardboardView: GCSCardboardView!, prepareDrawFrame headTransform: GCSHeadTransform!) {
-        print("prepareDrawFrame")
-    }
-    
-    func cardboardView(cardboardView: GCSCardboardView!, drawEye eye: GCSEye, withHeadTransform headTransform: GCSHeadTransform!) {
-        print("withHeadTransForm")
-    }
-    
-    func cardboardView(cardboardView: GCSCardboardView!, shouldPauseDrawing pause: Bool) {
-        print("shouldPauseDrawing")
     }
     
     func handleTap(gestureRecognize: UIGestureRecognizer) {
