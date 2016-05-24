@@ -18,12 +18,17 @@ class GameViewController: UIViewController {
         let scene = SCNScene(named: "art.scnassets/ship.scn")!
         
         // create and add a camera to the scene
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        scene.rootNode.addChildNode(cameraNode)
+        let leftEyeCamera = SCNNode()
+        leftEyeCamera.camera = SCNCamera()
+        scene.rootNode.addChildNode(leftEyeCamera)
+        
+        let rightEyeCamera = SCNNode()
+        rightEyeCamera.camera = SCNCamera()
+        scene.rootNode.addChildNode(rightEyeCamera)
         
         // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
+        leftEyeCamera.position = SCNVector3(x: 0, y: 0, z: 15)
+        rightEyeCamera.position = SCNVector3(x: 150, y: 0, z: 15)
         
         // create and add a light to the scene
         let lightNode = SCNNode()
