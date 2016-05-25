@@ -13,18 +13,18 @@
                         <viewControllerLayoutGuide type="top" id="MYa-eX-Jpo"/>
                         <viewControllerLayoutGuide type="bottom" id="xDb-WW-ANH"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="r5f-B8-qAm">
+                    <view key="view" contentMode="scaleToFill" id="r5f-B8-qAm" userLabel="Face">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="e12-vF-2dO">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="e12-vF-2dO" userLabel="Eye Sockets">
+                                <rect key="frame" x="0.0" y="20" width="600" height="128"/>
                                 <subviews>
-                                    <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="edc-x0-1Fu">
-                                        <rect key="frame" x="300" y="0.0" width="300" height="128"/>
+                                    <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="edc-x0-1Fu" userLabel="Left Eye">
+                                        <rect key="frame" x="0.0" y="0.0" width="299" height="128"/>
                                     </sceneKitView>
-                                    <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="imf-Ex-POV">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="128"/>
+                                    <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="imf-Ex-POV" userLabel="Right Eye">
+                                        <rect key="frame" x="301" y="0.0" width="299" height="128"/>
                                     </sceneKitView>
                                 </subviews>
                             </stackView>
@@ -52,6 +52,10 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="leftEye" destination="edc-x0-1Fu" id="IiR-ct-D8i"/>
+                        <outlet property="rightEye" destination="imf-Ex-POV" id="lG8-Ym-BfP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>

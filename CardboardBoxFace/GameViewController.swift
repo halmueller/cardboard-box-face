@@ -11,24 +11,23 @@ import QuartzCore
 import SceneKit
 
 class GameViewController: UIViewController {
+    @IBOutlet weak var leftEye: SCNView!
+    @IBOutlet weak var rightEye: SCNView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // create a new scene
         let scene = SCNScene(named: "art.scnassets/ship.scn")!
         
+        leftEye.scene = scene
+        rightEye.scene = scene
         // create and add a camera to the scene
-        let leftEyeCamera = SCNNode()
-        leftEyeCamera.camera = SCNCamera()
-        scene.rootNode.addChildNode(leftEyeCamera)
-        
-        let rightEyeCamera = SCNNode()
-        rightEyeCamera.camera = SCNCamera()
-        scene.rootNode.addChildNode(rightEyeCamera)
-        
-        // place the camera
-        leftEyeCamera.position = SCNVector3(x: 0, y: 0, z: 15)
-        rightEyeCamera.position = SCNVector3(x: 150, y: 0, z: 15)
+//        let leftEyeCamera = SCNNode()
+//        leftEyeCamera.camera = SCNCamera()
+//        scene.rootNode.addChildNode(leftEyeCamera)
+//        
+//        // place the camera
+//        leftEyeCamera.position = SCNVector3(x: 0, y: 0, z: 15)
         
         // create and add a light to the scene
         let lightNode = SCNNode()
@@ -50,29 +49,26 @@ class GameViewController: UIViewController {
         // animate the 3d object
         //ship.runAction(SCNAction.repeatActionForever(SCNAction.rotateByX(0, y: 2, z: 0, duration: 1)))
         
-        // retrieve the SCNView
-        let scnView = self.view as! SCNView
-        
         // set the scene to the view
-        scnView.scene = scene
+        leftEye.scene = scene
         
         // allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
+        leftEye.allowsCameraControl = true
         
         // show statistics such as fps and timing information
-        scnView.showsStatistics = true
+        leftEye.showsStatistics = true
         
         // configure the view
-        scnView.backgroundColor = UIColor.blackColor()
+        leftEye.backgroundColor = UIColor.blackColor()
         
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        scnView.addGestureRecognizer(tapGesture)
+        leftEye.addGestureRecognizer(tapGesture)
     }
     
     func handleTap(gestureRecognize: UIGestureRecognizer) {
         // retrieve the SCNView
-        let scnView = self.view as! SCNView
+        let scnView = self.leftEye
         
         // check what nodes are tapped
         let p = gestureRecognize.locationInView(scnView)
