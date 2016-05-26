@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8C4B6B891CF18E73009285D6 /* VPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4B6B881CF18E73009285D6 /* VPView.swift */; };
+		8C4B6B931CF6F782009285D6 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4B6B921CF6F782009285D6 /* CameraController.swift */; };
 		8CC051C41CE4404C009B5BF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC051C31CE4404C009B5BF0 /* AppDelegate.swift */; };
 		8CC051C61CE4404C009B5BF0 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC051C51CE4404C009B5BF0 /* art.scnassets */; };
 		8CC051C81CE4404C009B5BF0 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC051C71CE4404C009B5BF0 /* GameViewController.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		8C4B6B881CF18E73009285D6 /* VPView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPView.swift; sourceTree = "<group>"; };
+		8C4B6B921CF6F782009285D6 /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		8CC051C01CE4404C009B5BF0 /* CardboardBoxFace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardboardBoxFace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CC051C31CE4404C009B5BF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CC051C51CE4404C009B5BF0 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				8CC051C71CE4404C009B5BF0 /* GameViewController.swift */,
+				8C4B6B921CF6F782009285D6 /* CameraController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				8CC051C81CE4404C009B5BF0 /* GameViewController.swift in Sources */,
 				8C4B6B891CF18E73009285D6 /* VPView.swift in Sources */,
 				8CC051C41CE4404C009B5BF0 /* AppDelegate.swift in Sources */,
+				8C4B6B931CF6F782009285D6 /* CameraController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
