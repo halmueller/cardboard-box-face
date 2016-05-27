@@ -42,6 +42,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         // Add the scene to the views.
         leftEye?.scene = scene
         rightEye?.scene = scene
+        rightEye.showsStatistics = true
         
         // Create view points in the scene
         let leftCamera = SCNCamera()
@@ -69,7 +70,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         camerasNode!.addChildNode(leftCameraNode)
         camerasNode!.addChildNode(rightCameraNode)
         
-        // MAGIC to figure out later.
+        // MAGIC that controls camera with head position.
         let camerasNodeAngles = getCamerasNodeAngle()
         camerasNode!.eulerAngles = SCNVector3Make(Float(camerasNodeAngles[0]), Float(camerasNodeAngles[1]), Float(camerasNodeAngles[2]))
         
@@ -88,11 +89,12 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         leftEye?.pointOfView = leftCameraNode
         rightEye?.pointOfView = rightCameraNode
         
-        // Respond to user head movement. Refreshes the position of the camera 75 times per second.
+        // Respond to user head movement. Refreshes the position of the camera 60 times per second.
         motionManager = CMMotionManager()
-        motionManager?.deviceMotionUpdateInterval = 1.0 / 75.0
+        motionManager?.deviceMotionUpdateInterval = 1.0 / 60.0
         motionManager?.startDeviceMotionUpdatesUsingReferenceFrame(CMAttitudeReferenceFrame.XArbitraryZVertical)
         
+        // Make sure the views render the scene.
         leftEye.delegate = self
         rightEye.delegate = self
         
@@ -147,18 +149,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         let floorNode = SCNNode(geometry: floor)
         floorNode.physicsBody = SCNPhysicsBody.staticBody()
         scene!.rootNode.addChildNode(floorNode)
-    }
-    
-    override func shouldAutorotate() -> Bool {
-        return false
-    }
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return .Landscape
     }
     
     override func didReceiveMemoryWarning() {
