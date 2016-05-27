@@ -9,7 +9,6 @@
 //
 //  Created by Eric Mentele on 5/11/16.
 //  Copyright (c) 2016 Eric Mentele. All rights reserved.
-// TODO: Set tap gesture to recenter view, pedometer to mover forward.
 
 import UIKit
 import QuartzCore
@@ -20,8 +19,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     @IBOutlet weak var leftEye: SCNView!
     @IBOutlet weak var rightEye: SCNView!
 
-    //plane for scene
     var scene : SCNScene?
+    // Create camera nodes
     var camerasNode : SCNNode?
     var cameraRollNode : SCNNode?
     var cameraPitchNode : SCNNode?
@@ -31,45 +30,46 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     let roomWidth:Float = 200.0
     let roomHeight:Float = 200.0
     
+    // Track head movement
     var motionManager : CMMotionManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scene = SCNScene(named: "art.scnassets/ship.scn")!
-        createRoom()
+        createFloor()
 
+        // Add the scene to the views.
         leftEye?.scene = scene
         rightEye?.scene = scene
         
-        // Create cameras
-        let camX = 0.0 as Float
-        let camY = 60.0 as Float
-        let camZ = 0.0 as Float
-        // Watch out for this! xFar default is 100 and it will clip everything past that.
-        let zFar = 500.0
-        
-        
+        // Create view points in the scene
         let leftCamera = SCNCamera()
         let rightCamera = SCNCamera()
-        leftCamera.zFar = zFar
-        rightCamera.zFar = zFar
+        // Watch out for this! xFar default is 100 and it will clip everything past that.
+        leftCamera.automaticallyAdjustsZRange = true
+        rightCamera.automaticallyAdjustsZRange = true
         
-       
+        let camX = 0.0 as Float
+        let camY = 10.0 as Float
+        let camZ = 0.0 as Float
         
+        // Create nodes to act as a point in space for the cameras to view from.
         let leftCameraNode = SCNNode()
         leftCameraNode.camera = leftCamera
         leftCameraNode.position = SCNVector3(x: camX - 2.5, y: camY, z: camZ)
         
         let rightCameraNode = SCNNode()
         rightCameraNode.camera = rightCamera
-        rightCameraNode.position = SCNVector3(x: camX + 5.0, y: camY, z: camZ)
+        rightCameraNode.position = SCNVector3(x: camX + 2.5, y: camY, z: camZ)
         
+        // Create a center point for the camera nodes to move together.
         camerasNode = SCNNode()
         camerasNode!.position = SCNVector3(x: camX, y:camY, z:camZ)
         camerasNode!.addChildNode(leftCameraNode)
         camerasNode!.addChildNode(rightCameraNode)
         
+        // MAGIC to figure out later.
         let camerasNodeAngles = getCamerasNodeAngle()
         camerasNode!.eulerAngles = SCNVector3Make(Float(camerasNodeAngles[0]), Float(camerasNodeAngles[1]), Float(camerasNodeAngles[2]))
         
@@ -84,18 +84,20 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         
         scene!.rootNode.addChildNode(cameraYawNode!)
         
+        // Once camera nodes are set up then make them the points of view for the eye views.
         leftEye?.pointOfView = leftCameraNode
         rightEye?.pointOfView = rightCameraNode
         
-        // Respond to user head movement. Refreshes the position of the camera 120 times per second.
+        // Respond to user head movement. Refreshes the position of the camera 75 times per second.
         motionManager = CMMotionManager()
-        motionManager?.deviceMotionUpdateInterval = 1.0 / 120.0
+        motionManager?.deviceMotionUpdateInterval = 1.0 / 75.0
         motionManager?.startDeviceMotionUpdatesUsingReferenceFrame(CMAttitudeReferenceFrame.XArbitraryZVertical)
         
-        leftEye?.delegate = self
+        leftEye.delegate = self
+        rightEye.delegate = self
         
-        leftEye?.playing = true
-        rightEye?.playing = true
+        leftEye.playing = true
+        rightEye.playing = true
     }
     
     func getCamerasNodeAngle() -> [Double] {
@@ -112,10 +114,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         }
         
         return [ -M_PI_2, camerasNodeAngle1, camerasNodeAngle2 ]
-    }
-    
-    func handleTap(gestureRecognize: UIGestureRecognizer) {
-        camerasNode!.eulerAngles = SCNVector3Make(degreesToRadians(0.0), 0, 0)
     }
     
     func renderer(aRenderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval)
@@ -135,7 +133,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         }
     }
     
-    func createRoom() {
+    func createFloor() {
         // create floor for room
         let floor = SCNFloor()
         floor.reflectivity = 0
@@ -149,56 +147,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         let floorNode = SCNNode(geometry: floor)
         floorNode.physicsBody = SCNPhysicsBody.staticBody()
         scene!.rootNode.addChildNode(floorNode)
-        
-        // create walls for room
-        let halfWidth:Float = roomWidth / 2
-        let halfHeight:Float = roomHeight / 2
-        
-        let wallTextureImage:UIImage = UIImage(named: "art.scnassets/wall.jpg")!
-        let wallTextureHeightScale:Float = roomHeight / Float(wallTextureImage.size.height)
-        let wallTextureWidthScale:Float = roomWidth / Float(wallTextureImage.size.width) / wallTextureHeightScale
-        
-        let wall = SCNPlane(width: CGFloat(roomWidth), height: CGFloat(roomHeight))
-        
-        wall.firstMaterial?.diffuse.contents = wallTextureImage
-        wall.firstMaterial?.diffuse.contentsTransform = SCNMatrix4MakeScale(wallTextureWidthScale, 1, 1)
-        wall.firstMaterial?.diffuse.wrapS = SCNWrapMode.Repeat
-        wall.firstMaterial?.diffuse.wrapT = SCNWrapMode.Mirror
-        wall.firstMaterial?.diffuse.mipFilter = SCNFilterMode.Nearest;
-        wall.firstMaterial?.locksAmbientWithDiffuse = true
-        wall.firstMaterial?.doubleSided = false
-        wall.firstMaterial?.shininess = 0.0
-        
-        var wallNode = SCNNode(geometry: wall)
-        wallNode.position = SCNVector3Make(0, halfHeight, -halfWidth)
-        wallNode.physicsBody = SCNPhysicsBody.staticBody()
-        wallNode.physicsBody?.restitution = 1.0
-        wallNode.castsShadow = false
-        
-        scene!.rootNode.addChildNode(wallNode)
-        
-        wallNode = wallNode.clone()
-        wallNode.position = SCNVector3Make(-halfWidth, halfHeight, 0)
-        wallNode.rotation = SCNVector4Make(0, 1, 0, Float(M_PI_2))
-        scene!.rootNode.addChildNode(wallNode)
-        
-        wallNode = wallNode.clone()
-        wallNode.position = SCNVector3Make(halfWidth, halfHeight, 0)
-        wallNode.rotation = SCNVector4Make(0, 1, 0, Float(-M_PI_2))
-        scene!.rootNode.addChildNode(wallNode)
-        
-        wallNode = wallNode.clone()
-        wallNode.position = SCNVector3Make(0, halfHeight, halfWidth)
-        wallNode.rotation = SCNVector4Make(0, 1, 0, Float(M_PI))
-        scene!.rootNode.addChildNode(wallNode)
-    }
-    
-    func degreesToRadians(degrees: Float) -> Float {
-        return (degrees * Float(M_PI)) / 180.0
-    }
-    
-    func radiansToDegrees(radians: Float) -> Float {
-        return (180.0/Float(M_PI)) * radians
     }
     
     override func shouldAutorotate() -> Bool {
