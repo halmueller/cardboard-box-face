@@ -92,20 +92,20 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         // Respond to user head movement. Refreshes the position of the camera 60 times per second.
         motionManager = CMMotionManager()
         motionManager?.deviceMotionUpdateInterval = 1.0 / 60.0
-        motionManager?.startDeviceMotionUpdatesUsingReferenceFrame(CMAttitudeReferenceFrame.XArbitraryZVertical)
+        motionManager?.startDeviceMotionUpdates(using: CMAttitudeReferenceFrame.xArbitraryZVertical)
         
         // Make sure the views render the scene.
         leftEye.delegate = self
         rightEye.delegate = self
         
-        leftEye.playing = true
-        rightEye.playing = true
+        leftEye.isPlaying = true
+        rightEye.isPlaying = true
     }
     
     func getCamerasNodeAngle() -> [Double] {
         var camerasNodeAngle1: Double! = 0.0
         var camerasNodeAngle2: Double! = 0.0
-        let orientation = UIApplication.sharedApplication().statusBarOrientation.rawValue
+        let orientation = UIApplication.shared.statusBarOrientation.rawValue
         if orientation == 1 {
             camerasNodeAngle1 = -M_PI_2
         } else if orientation == 2 {
@@ -118,15 +118,15 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         return [ -M_PI_2, camerasNodeAngle1, camerasNodeAngle2 ]
     }
     
-    func renderer(aRenderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval)
+    func renderer(_ aRenderer: SCNSceneRenderer, updateAtTime time: TimeInterval)
     {
         // Render the scene
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+        DispatchQueue.main.async { () -> Void in
             if let mm = self.motionManager, let motion = mm.deviceMotion {
                 let currentAttitude = motion.attitude
                 
                 var roll : Double = currentAttitude.roll
-                if(UIApplication.sharedApplication().statusBarOrientation == UIInterfaceOrientation.LandscapeRight){ roll = -1.0 * (-M_PI - roll)}
+                if(UIApplication.shared.statusBarOrientation == UIInterfaceOrientation.landscapeRight){ roll = -1.0 * (-M_PI - roll)}
                 
                 self.cameraRollNode!.eulerAngles.x = Float(roll)
                 self.cameraPitchNode!.eulerAngles.z = Float(currentAttitude.pitch)
@@ -142,12 +142,12 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         floor.firstMaterial?.diffuse.contents = "art.scnassets/wood.png"
         floor.firstMaterial?.diffuse.contentsTransform = SCNMatrix4MakeScale(200.0, 200.0, 200.0)
         floor.firstMaterial?.locksAmbientWithDiffuse = true
-        floor.firstMaterial?.diffuse.wrapS = SCNWrapMode.Repeat;
-        floor.firstMaterial?.diffuse.wrapT = SCNWrapMode.Repeat;
-        floor.firstMaterial?.diffuse.mipFilter = SCNFilterMode.Nearest;
-        floor.firstMaterial?.doubleSided = false
+        floor.firstMaterial?.diffuse.wrapS = SCNWrapMode.repeat;
+        floor.firstMaterial?.diffuse.wrapT = SCNWrapMode.repeat;
+        floor.firstMaterial?.diffuse.mipFilter = SCNFilterMode.nearest;
+        floor.firstMaterial?.isDoubleSided = false
         let floorNode = SCNNode(geometry: floor)
-        floorNode.physicsBody = SCNPhysicsBody.staticBody()
+        floorNode.physicsBody = SCNPhysicsBody.static()
         scene!.rootNode.addChildNode(floorNode)
     }
     
